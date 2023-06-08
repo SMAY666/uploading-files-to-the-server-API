@@ -1,0 +1,23 @@
+{
+  "name": "uploading-files-to-the-server-api",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig-prod.json",
+    "start": "yarn build && node dist/index.js",
+    "build:dev": "tsc --project tsconfig-dev.json",
+    "start:dev": "yarn build:dev && node dist/index.js",
+    "start:watch": "nodemon"
+  },
+  "author": {
+    "email": "sazonov_15.03@mail.ru",
+    "name": "Matvey Sazonov"
+  },
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "fastify": "^4.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
