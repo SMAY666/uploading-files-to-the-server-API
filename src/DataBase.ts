@@ -1,6 +1,7 @@
 import {Sequelize} from 'sequelize';
 import {cleanEnv, port, str} from 'envalid';
 
+
 const env = cleanEnv(process.env, {
     PORT: port({default: 5000}),
     DB_USERNAME: str({default: 'postgres'}),
@@ -15,6 +16,7 @@ export const sequelize = new Sequelize(
     env.DB_USERNAME,
     env.DB_PASSWORD,
     {
+        logging: console.log,
         define: {
             charset: 'utf-8',
             collate: 'utf-8_general_ci',
@@ -31,6 +33,6 @@ export const sequelize = new Sequelize(
             idle: 20000,
             acquire: 40000,
             evict: 20000,
-        }
-    }
+        },
+    },
 );

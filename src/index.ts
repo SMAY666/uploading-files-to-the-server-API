@@ -1,8 +1,8 @@
 import {start} from './app';
-import {cleanEnv, port, str} from 'envalid';
+import {cleanEnv, port} from 'envalid';
 
 import {ServerConfig} from './types';
-import {File} from './models';
+import * as process from 'process';
 
 
 const env = cleanEnv(process.env, {
@@ -11,9 +11,12 @@ const env = cleanEnv(process.env, {
 
 const config: ServerConfig = {
     port: env.PORT,
-}
+};
 
 
 start(config)
-    .then()
-    .catch(console.log);
+    .then((address) => console.log(`[server]: Server started on ${address}`))
+    .catch((error) => {
+        console.log(error);
+        process.exit(-1);
+    });

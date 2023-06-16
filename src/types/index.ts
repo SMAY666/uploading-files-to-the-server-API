@@ -8,4 +8,4 @@ export type DataBaseConfig = {
 
 export type ServerConfig = {
     port: number;
-}
+};

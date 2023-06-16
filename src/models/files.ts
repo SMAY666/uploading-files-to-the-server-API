@@ -1,6 +1,5 @@
-import {DataTypes} from 'sequelize'
+import {DataTypes} from 'sequelize';
 import {sequelize} from '../DataBase';
-
 
 export const File = sequelize.define('Files', {
     id: {
@@ -11,7 +10,7 @@ export const File = sequelize.define('Files', {
     path: {
         type: DataTypes.STRING,
         allowNull: false,
-    }
+    },
 }, {
     freezeTableName: true,
 });

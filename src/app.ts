@@ -1,18 +1,17 @@
-import Fastify from 'fastify'
+import Fastify from 'fastify';
 import {ServerConfig} from './types';
 import {sequelize} from './DataBase';
 
 const server = Fastify();
 
-export async function start(config: ServerConfig): Promise<void> {
-    sequelize.sync({alter: true})
-        .then()
-        .catch(console.log);
-    server.listen({port: config.port}, (err, address) => {
-        if (err) {
-            console.log(`[server]: Server start error: ${err}`);
-            process.exit(1);
-        }
-        console.log(`[server]: Server started on ${address}`);
-    })
+export async function start(config: ServerConfig): Promise<string> {
+    await sequelize.sync({alter: true, force: false});
+    return new Promise((resolve, reject) => {
+        server.listen({port: config.port}, (err, address) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(address);
+        });
+    });
 }
