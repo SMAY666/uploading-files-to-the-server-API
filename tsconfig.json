@@ -5,6 +5,7 @@
     "target": "ES6",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "exactOptionalPropertyTypes": false,
     /*** Modules ******************************************************************************************************/
     "module": "commonjs",
     "rootDir": "./src",
