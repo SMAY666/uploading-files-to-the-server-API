@@ -15,6 +15,3 @@ export const File = sequelize.define('Files', {
 }, {
     freezeTableName: true,
 });
-File.sync()
-    .then()
-    .catch(console.log)

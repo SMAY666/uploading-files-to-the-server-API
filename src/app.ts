@@ -5,6 +5,9 @@ import {sequelize} from './DataBase';
 const server = Fastify();
 
 export async function start(config: ServerConfig): Promise<void> {
+    sequelize.sync({alter: true})
+        .then()
+        .catch(console.log);
     server.listen({port: config.port}, (err, address) => {
         if (err) {
             console.log(`[server]: Server start error: ${err}`);

@@ -17,5 +17,3 @@ const config: ServerConfig = {
 start(config)
     .then()
     .catch(console.log);
-
-const file = File.findAll();
