@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "exactOptionalPropertyTypes": false,
     /*** Modules ******************************************************************************************************/
-    "module": "commonjs",
+    "module": "commonJS",
     "rootDir": "./src",
     "moduleResolution": "node",
     "baseUrl": "./src",

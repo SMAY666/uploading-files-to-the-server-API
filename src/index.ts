@@ -3,10 +3,11 @@ import {cleanEnv, port} from 'envalid';
 
 import {ServerConfig} from './types';
 import * as process from 'process';
+import 'dotenv/config';
 
 
 const env = cleanEnv(process.env, {
-    PORT: port({default: 5000}),
+    PORT: port({default: 8001}),
 });
 
 const config: ServerConfig = {

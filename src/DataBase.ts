@@ -4,11 +4,11 @@ import {cleanEnv, port, str} from 'envalid';
 
 const env = cleanEnv(process.env, {
     PORT: port({default: 5000}),
-    DB_USERNAME: str({default: 'postgres'}),
-    DB_PASSWORD: str({default: '1111'}),
+    DB_USERNAME: str({default: 'root'}),
+    DB_PASSWORD: str({default: 'root'}),
     DB_HOST: str({default: 'localhost'}),
-    DB_PORT: port({default: 5432}),
-    DB_NAME: str({default: 'fileStorage'}),
+    DB_PORT: port({default: 3306}),
+    DB_NAME: str({default: 'filestorage'}),
 });
 
 export const sequelize = new Sequelize(
@@ -18,21 +18,11 @@ export const sequelize = new Sequelize(
     {
         logging: console.log,
         define: {
-            charset: 'utf-8',
-            collate: 'utf-8_general_ci',
+            charset: 'utf8',
+            collate: 'utf8_general_ci',
         },
-        host: 'localhost',
-        dialect: 'postgres',
+        host: env.DB_HOST,
+        dialect: 'mysql',
         port: env.DB_PORT,
-        sync: {
-            schema: 'Public',
-        },
-        pool: {
-            max: 5,
-            min: 0,
-            idle: 20000,
-            acquire: 40000,
-            evict: 20000,
-        },
     },
 );

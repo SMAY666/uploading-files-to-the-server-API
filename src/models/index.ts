@@ -1,1 +1,1 @@
-export {File} from './files';
+export {FileModel} from './files';
