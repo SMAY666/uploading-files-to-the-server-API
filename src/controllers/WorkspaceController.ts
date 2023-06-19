@@ -4,12 +4,23 @@ import {workspaceService} from '../services';
 import {DeleteFileRequest, GetAllFilesRequest, GetFileByIdRequest, UpdateFileRequest} from '../types/Requests/File';
 import {FileInstance} from '../types/models/File';
 
+import * as uuid from 'uuid';
+
 
 export class WorkspaceController {
     // ----[FILE]------
 
     public createFile: RouteHandler<CreateFileRequest> = async (req, reply) => {
-        const file = await workspaceService.createFile(req.body);
+        if (!req.file) {
+            return reply
+                .code(400)
+                .send();
+        }
+
+        const file = await workspaceService.createFile({
+            originalName: req.file.originalname,
+            name: req.file.filename ?? uuid.v4(),
+        });
 
         return reply
             .code(201)

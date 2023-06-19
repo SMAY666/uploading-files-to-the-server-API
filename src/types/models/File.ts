@@ -3,7 +3,8 @@ import {Model} from 'sequelize';
 
 export type FileAttributes = {
     id: number
-    path: string
+    originalName: string,
+    name: string,
     updatedAt: Date
     createdAt: Date
 }

@@ -2,6 +2,7 @@ import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../t
 import {workspaceRepository} from '../repositories';
 import {CustomError} from '../utils/error';
 
+
 export class WorkspaceService {
     public async createFile(data: FileCreationAttributes): Promise<FileAttributes> {
         const file = await workspaceRepository.createFile(data);

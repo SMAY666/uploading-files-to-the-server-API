@@ -3,6 +3,7 @@
   "compilerOptions": {
     /*** Language and Environment *************************************************************************************/
     "target": "ES6",
+    "lib": ["es2017", "es2019", "es2021"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "exactOptionalPropertyTypes": false,
@@ -19,7 +20,8 @@
     /*** Interop Constraints ******************************************************************************************/
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": [
     "./src"

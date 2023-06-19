@@ -8,7 +8,11 @@ export const FileModel = sequelize.define<FileInstance>('files', {
         autoIncrement: true,
         primaryKey: true,
     },
-    path: {
+    originalName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
