@@ -1,4 +1,4 @@
-import {FileCreationAttributes, FileUpdateAttributes} from '../models/File';
+import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../models/File';
 
 export type CreateFileRequest = {
     Body: FileCreationAttributes
@@ -6,8 +6,27 @@ export type CreateFileRequest = {
 }
 
 export type UpdateFileRequest = {
-    params: {
-        FileId: number
+    Params: {
+        fileId: number
     }
     Body: FileUpdateAttributes
+    Replay: FileAttributes
+}
+
+export type DeleteFileRequest = {
+    Params: {
+        fileId: number
+    }
+    Replay: FileAttributes
+}
+
+export type GetFileByIdRequest = {
+    Params: {
+        fileId: number
+    }
+    Reply: FileAttributes
+}
+
+export type GetAllFilesRequest = {
+    Reply: FileAttributes[]
 }
