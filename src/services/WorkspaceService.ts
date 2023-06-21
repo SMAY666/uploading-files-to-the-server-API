@@ -1,6 +1,10 @@
 import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../types/models/File';
 import {workspaceRepository} from '../repositories';
 import {CustomError} from '../utils/error';
+import {ReadStream} from 'typeorm/browser/platform/BrowserPlatformTools';
+import fs from 'fs';
+import path from 'path';
+import {FILES_DIR} from '../utils/fileTools';
 
 
 export class WorkspaceService {
@@ -36,5 +40,13 @@ export class WorkspaceService {
     public async getAllFiles(): Promise<FileAttributes[]> {
         const files = await workspaceRepository.getAllFiles();
         return files.map((file) => file.get());
+    }
+
+    public async downloadFile(fileId: number): Promise<ReadStream> {
+        const file = await workspaceRepository.getFileById(fileId);
+        if (!file) {
+            throw CustomError('file not found', 404);
+        }
+        return fs.createReadStream(path.join(FILES_DIR, file.name));
     }
 }

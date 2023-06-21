@@ -5,7 +5,7 @@
     "incremental": true,
     "tsBuildInfoFile": "dist/tsconfig-dev.tsbuildinfo",
     /*** Emit *********************************************************************************************************/
-    "declarationMap": true,
+    "declarationMap": false,
     "sourceMap": false,
     "sourceRoot": "./src",
     "inlineSourceMap": true,

@@ -1,4 +1,5 @@
 import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../models/File';
+import {ReadStream} from 'typeorm/browser/platform/BrowserPlatformTools';
 
 export type CreateFileRequest = {
     Body: FileCreationAttributes
@@ -29,4 +30,11 @@ export type GetFileByIdRequest = {
 
 export type GetAllFilesRequest = {
     Reply: FileAttributes[]
+}
+
+export type DownLoadFileRequest = {
+    Params: {
+        fileId: number;
+    }
+    Reply: ReadStream
 }

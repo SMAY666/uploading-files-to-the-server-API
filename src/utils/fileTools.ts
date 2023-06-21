@@ -5,7 +5,7 @@ import fs from 'fs';
 
 
 const PUBLIC_DIR = path.join(process.mainModule!.path, '..', 'public');
-const FILES_DIR = path.join(PUBLIC_DIR, 'files');
+export const FILES_DIR = path.join(PUBLIC_DIR, 'files');
 
 function createFileStorage(dir: string): ReturnType<typeof multer.diskStorage> {
     try {
@@ -32,4 +32,3 @@ export const filesUpload = multer({
         fileSize: 52428800, // 50Мб
     },
 });
-

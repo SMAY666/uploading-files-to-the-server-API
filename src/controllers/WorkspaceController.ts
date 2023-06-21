@@ -1,7 +1,13 @@
 import {RouteHandler} from 'fastify';
 import {CreateFileRequest} from '../types';
 import {workspaceService} from '../services';
-import {DeleteFileRequest, GetAllFilesRequest, GetFileByIdRequest, UpdateFileRequest} from '../types/Requests/File';
+import {
+    DeleteFileRequest,
+    DownLoadFileRequest,
+    GetAllFilesRequest,
+    GetFileByIdRequest,
+    UpdateFileRequest,
+} from '../types/Requests/File';
 import {FileInstance} from '../types/models/File';
 
 import * as uuid from 'uuid';
@@ -53,5 +59,12 @@ export class WorkspaceController {
         return reply
             .code(200)
             .send(files);
+    };
+
+    public downloadFile: RouteHandler<DownLoadFileRequest> = async (req, reply) => {
+        const stream = await workspaceService.downloadFile(req.params.fileId);
+        return reply
+            .code(200)
+            .send(stream);
     };
 }
