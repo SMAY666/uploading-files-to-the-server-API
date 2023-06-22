@@ -5,7 +5,7 @@ import {apiRoutes} from './routes';
 import multer from 'fastify-multer';
 
 
-const server = Fastify();
+export const server = Fastify();
 void server.register(multer.contentParser);
 void server.register(apiRoutes, {prefix: 'api/v1'});
 void server.register(import('@fastify/jwt'), {

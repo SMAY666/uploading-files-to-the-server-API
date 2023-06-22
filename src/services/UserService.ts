@@ -1,19 +1,24 @@
-import {UserAttributes, UserCreationAttributes} from '../types/models/User';
+import {UserAttributes} from '../types/models/User';
 import {userRepository} from '../repositories';
 import {Password} from '../utils/Password';
 import {CustomError} from '../utils/error';
+import {FastifyInstance} from 'fastify';
+import {env} from '../DataBase';
+import {SignUpData} from '../types/services/userService';
 
 
 export class UserService {
-    public async createUser(data: UserCreationAttributes, confirmPassword: string): Promise<UserAttributes> {
 
-        if (data.passwordHash === confirmPassword) {
-            data.passwordHash = Password.calculateHash(data.passwordHash);
-        } else {
+    public async createUser(data: SignUpData): Promise<UserAttributes> {
+
+        if (data.password !== data.confirmPassword) {
             throw CustomError('Password not confirmed', 400);
         }
 
-        const user = await userRepository.createUse(data);
+        const user = await userRepository.create({
+            passwordHash: Password.calculateHash(data.password),
+            ...data,
+        });
         return user.get();
     }
 

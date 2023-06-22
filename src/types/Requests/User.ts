@@ -1,11 +1,17 @@
 import {UserCreationAttributes} from '../models/User';
+import {SignUpData} from '../services/userService';
 
+
+export type AuthUserRequest = {
+    Body: {
+        email: string
+        password: string
+    }
+    Reply: string
+}
 
 export type CreateUserRequest = {
-    Body: {
-        userData: UserCreationAttributes,
-        confirmPassword: string
-    }
+    Body: SignUpData
     Reply: UserCreationAttributes
 }
 
