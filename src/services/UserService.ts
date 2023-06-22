@@ -16,4 +16,13 @@ export class UserService {
         const user = await userRepository.createUse(data);
         return user.get();
     }
+
+    public async getUserById(userId: number): Promise<UserAttributes | null> {
+        const user = await userRepository.getUserById(userId);
+
+        if (!user) {
+            throw CustomError('User not found', 404);
+        }
+        return user.get();
+    }
 }

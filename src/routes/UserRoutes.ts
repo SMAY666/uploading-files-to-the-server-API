@@ -1,5 +1,5 @@
 import {FastifyPluginCallback} from 'fastify';
-import {CreateUserRequest} from '../types/Requests/User';
+import {CreateUserRequest, GetUserByIdRequest} from '../types/Requests/User';
 import {userController} from '../controllers';
 
 export const userRoutes: FastifyPluginCallback = (instance, opts, done) => {
@@ -7,6 +7,12 @@ export const userRoutes: FastifyPluginCallback = (instance, opts, done) => {
         '/user',
         {},
         userController.createUser,
+    );
+
+    instance.get<GetUserByIdRequest>(
+        '/:userId',
+        {},
+        userController.getUserById,
     );
     done();
 };

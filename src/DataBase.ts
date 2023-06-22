@@ -1,14 +1,16 @@
 import {Sequelize} from 'sequelize';
-import {cleanEnv, port, str} from 'envalid';
+import {cleanEnv, num, port, str} from 'envalid';
 
 
-const env = cleanEnv(process.env, {
+export const env = cleanEnv(process.env, {
     PORT: port({default: 5000}),
     DB_USERNAME: str({default: 'root'}),
     DB_PASSWORD: str({default: 'root'}),
     DB_HOST: str({default: 'localhost'}),
     DB_PORT: port({default: 3306}),
     DB_NAME: str({default: 'filestorage'}),
+    JWT_SECRET: str({default: 'dev'}),
+    JWT_EXPIRES_IN: num({default: 3600000}),
 });
 
 export const sequelize = new Sequelize(

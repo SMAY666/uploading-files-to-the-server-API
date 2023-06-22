@@ -17,6 +17,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@fastify/jwt": "^7.0.0",
     "@fastify/postgres": "^5.2.0",
     "@fastify/static": "^6.10.2",
     "@types/sequelize": "^4.28.15",

@@ -8,3 +8,9 @@ export type CreateUserRequest = {
     }
     Reply: UserCreationAttributes
 }
+
+export type GetUserByIdRequest = {
+    Params: {
+       userId: number
+    }
+}
