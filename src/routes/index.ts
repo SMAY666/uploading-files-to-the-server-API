@@ -1,7 +1,9 @@
-import {workspaceRoutes} from './workspaceRoutes';
 import {FastifyPluginCallback} from 'fastify';
+
+import {workspaceRoutes} from './workspaceRoutes';
 import {userRoutes} from './userRoutes';
 import {authRoutes} from './authRoutes';
+
 
 export const apiRoutes: FastifyPluginCallback = (instance, opts, done) => {
     void instance.register(workspaceRoutes, {prefix: '/workspace'});

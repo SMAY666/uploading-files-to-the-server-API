@@ -1,5 +1,3 @@
-import {WorkspaceController} from './WorkspaceController';
-import {UserController} from './UserController';
-
-export const workspaceController = new WorkspaceController();
-export const userController = new UserController();
+export {workspaceController} from './WorkspaceController';
+export {usersController} from './UsersController';
+export {authController} from './AuthController';

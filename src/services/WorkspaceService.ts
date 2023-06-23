@@ -1,13 +1,14 @@
-import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../types/models/File';
-import {workspaceRepository} from '../repositories';
-import {CustomError} from '../utils/error';
 import {ReadStream} from 'typeorm/browser/platform/BrowserPlatformTools';
 import fs from 'fs';
 import path from 'path';
+
+import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../types/models/File';
+import {workspaceRepository} from '../repositories';
+import {CustomError} from '../utils/error';
 import {FILES_DIR} from '../utils/fileTools';
 
 
-export class WorkspaceService {
+class WorkspaceService {
     public async createFile(data: FileCreationAttributes): Promise<FileAttributes> {
         const file = await workspaceRepository.createFile(data);
         return file.get();
@@ -50,3 +51,5 @@ export class WorkspaceService {
         return fs.createReadStream(path.join(FILES_DIR, file.name));
     }
 }
+
+export const workspaceService = new WorkspaceService();

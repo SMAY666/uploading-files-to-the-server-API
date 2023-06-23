@@ -1,4 +1,5 @@
 import {RouteHandler} from 'fastify';
+
 import {CreateFileRequest} from '../types';
 import {workspaceService} from '../services';
 import {
@@ -13,7 +14,7 @@ import {FileInstance} from '../types/models/File';
 import * as uuid from 'uuid';
 
 
-export class WorkspaceController {
+class WorkspaceController {
     // ----[FILE]------
 
     public createFile: RouteHandler<CreateFileRequest> = async (req, reply) => {
@@ -68,3 +69,5 @@ export class WorkspaceController {
             .send(stream);
     };
 }
+
+export const workspaceController = new WorkspaceController();

@@ -17,6 +17,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@fastify/auth": "^4.3.0",
     "@fastify/jwt": "^7.0.0",
     "@fastify/postgres": "^5.2.0",
     "@fastify/static": "^6.10.2",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@quic-pro/eslint-config": "^0.3.1",
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "^20.2.5",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.59.9",

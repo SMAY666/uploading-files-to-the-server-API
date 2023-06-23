@@ -1,18 +1,14 @@
 import {FastifyPluginCallback} from 'fastify';
-import {CreateUserRequest, GetUserByIdRequest} from '../types/Requests/User';
-import {userController} from '../controllers';
+
+import {GetUserByIdRequest} from '../types/Requests/User';
+import {usersController} from '../controllers';
 
 export const userRoutes: FastifyPluginCallback = (instance, opts, done) => {
-    instance.post<CreateUserRequest>(
-        '/user',
-        {},
-        userController.createUser,
-    );
-
+    instance.addHook('onRequest', instance.auth([instance.verifyJwt]));
     instance.get<GetUserByIdRequest>(
         '/:userId',
         {},
-        userController.getUserById,
+        usersController.getById,
     );
     done();
 };

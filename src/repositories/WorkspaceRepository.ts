@@ -1,7 +1,7 @@
 import {FileCreationAttributes, FileInstance, FileUpdateAttributes} from '../types/models/File';
 import {FileModel} from '../models';
 
-export class WorkspaceRepository {
+class WorkspaceRepository {
     // -----[FILES]----
 
     public async createFile(data: FileCreationAttributes): Promise<FileInstance> {
@@ -35,3 +35,5 @@ export class WorkspaceRepository {
         return await FileModel.findAll();
     }
 }
+
+export const workspaceRepository = new WorkspaceRepository();

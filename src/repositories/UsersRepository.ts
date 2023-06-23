@@ -1,12 +1,12 @@
 import {UserCreationAttributes, UserInstance} from '../types/models/User';
 import {UserModel} from '../models';
 
-export class UserRepository {
+class UsersRepository {
     public async create(data: UserCreationAttributes): Promise<UserInstance> {
         return await UserModel.create(data);
     }
 
-    public async getUserById(userId: number): Promise<UserInstance | null> {
+    public async getById(userId: number): Promise<UserInstance | null> {
         return await UserModel.findByPk(userId);
     }
 
@@ -18,3 +18,5 @@ export class UserRepository {
         });
     }
 }
+
+export const usersRepository = new UsersRepository();

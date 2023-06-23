@@ -1,16 +1,24 @@
 import Fastify from 'fastify';
+import multer from 'fastify-multer';
+
 import {ServerConfig} from './types';
 import {sequelize, env} from './DataBase';
 import {apiRoutes} from './routes';
-import multer from 'fastify-multer';
+import {verifyJwt} from './middlewares/jwtAuth';
 
 
 export const server = Fastify();
+
+
 void server.register(multer.contentParser);
+void server.register(import('@fastify/auth'));
 void server.register(apiRoutes, {prefix: 'api/v1'});
 void server.register(import('@fastify/jwt'), {
     secret: env.JWT_SECRET,
 });
+
+server.decorate('verifyJwt', verifyJwt);
+
 export async function start(config: ServerConfig): Promise<string> {
     await sequelize.sync({force: false, alter: true});
     return new Promise((resolve, reject) => {

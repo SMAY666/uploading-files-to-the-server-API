@@ -1,12 +1,19 @@
 import {FastifyPluginCallback} from 'fastify';
-import {AuthUserRequest} from '../types/Requests/User';
-import {userController} from '../controllers';
+
+import {SignInRequest, SignUpRequest} from '../types/Requests/Auth';
+import {authController} from '../controllers';
+
 
 export const authRoutes: FastifyPluginCallback = (instance, opts, done) => {
-    instance.post<AuthUserRequest>(
+    instance.post<SignUpRequest>(
+        '/sign-up',
+        {},
+        authController.signUp,
+    );
+    instance.post<SignInRequest>(
         '/sign-in',
         {},
-        userController.authUser,
+        authController.signIn,
     );
     done();
 };
