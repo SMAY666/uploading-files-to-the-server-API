@@ -29,6 +29,10 @@ export type GetFileByIdRequest = {
 }
 
 export type GetAllFilesRequest = {
+    Querystring: {
+        limit: number
+        offset: number
+    }
     Reply: FileAttributes[]
 }
 

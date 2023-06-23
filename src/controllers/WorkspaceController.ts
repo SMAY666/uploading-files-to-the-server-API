@@ -27,6 +27,7 @@ class WorkspaceController {
         const file = await workspaceService.createFile({
             originalName: req.file.originalname,
             name: req.file.filename ?? uuid.v4(),
+            userId: req.userId,
         });
 
         return reply
@@ -56,7 +57,7 @@ class WorkspaceController {
     };
 
     public getAllFiles: RouteHandler<GetAllFilesRequest> = async (req, reply) => {
-        const files = await workspaceService.getAllFiles();
+        const files = await workspaceService.getAllFiles(req.query.limit, req.query.offset);
         return reply
             .code(200)
             .send(files);

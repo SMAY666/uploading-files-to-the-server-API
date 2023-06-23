@@ -7,7 +7,15 @@ import {apiRoutes} from './routes';
 import {verifyJwt} from './middlewares/jwtAuth';
 
 
-export const server = Fastify();
+export const server = Fastify({
+    ajv: {
+        customOptions: {
+            removeAdditional: 'all',
+            coerceTypes: 'array',
+            allErrors: false,
+        },
+    },
+});
 
 
 void server.register(multer.contentParser);

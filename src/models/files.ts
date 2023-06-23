@@ -16,6 +16,14 @@ export const FileModel = sequelize.define<FileInstance>('files', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    directoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
     updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,

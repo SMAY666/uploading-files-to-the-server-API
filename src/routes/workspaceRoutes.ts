@@ -12,6 +12,8 @@ import {
 import {filesUpload} from '../utils/fileTools';
 
 export const workspaceRoutes: FastifyPluginCallback = (instance, opts, done) => {
+    instance.addHook('onRequest', instance.auth([instance.verifyJwt]));
+
     instance.post<CreateFileRequest>(
         '/files',
         {
@@ -19,24 +21,42 @@ export const workspaceRoutes: FastifyPluginCallback = (instance, opts, done) => 
         },
         workspaceController.createFile,
     );
+
     instance.delete<DeleteFileRequest>(
         '/:fileId',
         {},
         workspaceController.deleteFile,
     );
+
     instance.patch<UpdateFileRequest>(
         '/:fileId',
         {},
         workspaceController.updateFile,
     );
+
     instance.get<GetFileByIdRequest>(
         '/:fileId',
         {},
         workspaceController.getFileById,
     );
+
     instance.get<GetAllFilesRequest>(
         '/',
-        {},
+        {
+            schema: {
+                querystring: {
+                    type: 'object',
+                    properties: {
+                        limit: {
+                            type: 'integer',
+                        },
+                        offset: {
+                            type: 'integer',
+                        },
+                    },
+                },
+            },
+        },
         workspaceController.getAllFiles,
     );
     instance.get<DownLoadFileRequest>(

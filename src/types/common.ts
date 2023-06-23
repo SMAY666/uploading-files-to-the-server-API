@@ -1,5 +1,6 @@
 import {File} from 'fastify-multer/lib/interfaces';
 import {HookHandlerDoneFunction} from 'fastify';
+import {Token} from './token';
 
 
 declare global {
@@ -24,7 +25,8 @@ declare module 'fastify' {
     export interface FastifyInstance {
         verifyJwt: (req: FastifyRequest, reply: FastifyReply, done: HookHandlerDoneFunction) => void
     }
-    export interface FastifyRequest {
+
+    export interface FastifyRequest extends Token {
         file?: File
         files?: File[]
     }

@@ -31,8 +31,8 @@ class WorkspaceRepository {
         return await FileModel.findByPk(fileId);
     }
 
-    public async getAllFiles(): Promise<FileInstance[]> {
-        return await FileModel.findAll();
+    public async getAllFiles(limit: number, offset: number): Promise<FileInstance[]> {
+        return await FileModel.findAll({limit, offset});
     }
 }
 
