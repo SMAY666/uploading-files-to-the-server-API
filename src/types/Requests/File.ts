@@ -3,6 +3,9 @@ import {ReadStream} from 'typeorm/browser/platform/BrowserPlatformTools';
 
 export type CreateFileRequest = {
     Body: FileCreationAttributes
+    Querystring: {
+        directoryId: number
+    }
     Replay: FileCreationAttributes
 }
 

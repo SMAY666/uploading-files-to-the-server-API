@@ -1,28 +1,22 @@
-import {DataTypes} from 'sequelize';
 import {sequelize} from '../DataBase';
-import {FileInstance} from '../types/models/File';
+import {DirectoryInstance} from '../types/models/Directory';
+import {DataTypes} from 'sequelize';
 
-export const FileModel = sequelize.define<FileInstance>('files', {
+export const DirectoryModal = sequelize.define<DirectoryInstance>('directories', {
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
         primaryKey: true,
-    },
-    originalName: {
-        type: DataTypes.STRING,
+        autoIncrement: true,
         allowNull: false,
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    directoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
+        unique: true,
     },
     userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     updatedAt: {
         type: DataTypes.DATE,
