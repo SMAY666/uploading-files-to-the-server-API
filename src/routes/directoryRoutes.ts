@@ -16,6 +16,9 @@ export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => 
                             type: 'string',
                             minLength: 1,
                         },
+                        directoryId: {
+                            type: 'integer',
+                        },
                     },
                 },
             },

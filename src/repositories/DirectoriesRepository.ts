@@ -10,10 +10,11 @@ class DirectoriesRepository {
         return await DirectoryModal.findByPk(directoryId);
     }
 
-    public async getByName(name: string, userId: number): Promise<DirectoryInstance | null> {
+    public async getByName(name: string, directoryId: number | undefined | null, userId: number): Promise<DirectoryInstance | null> {
         return await DirectoryModal.findOne({
             where: {
                 name: name,
+                directoryId: directoryId ?? null,
                 userId: userId,
             },
         });
