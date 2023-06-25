@@ -4,17 +4,15 @@ import {CustomError} from '../utils/error';
 
 class DirectoriesService {
     public async create(data: DirectoryCreationAttributes): Promise<DirectoryAttributes> {
-        const directory = await directoryRepository.create(data);
-        return directory.get();
-    }
 
-    public async getByName(name: string, userId: number): Promise<DirectoryAttributes | null> {
-        const directory = await directoryRepository.getByName(name, userId);
+        const sameDirectory = await directoryRepository.getByName(data.name, data.userId);
 
-        if (directory) {
+        if (sameDirectory) {
             throw CustomError('Directory already exist', 409);
         }
-        return null;
+
+        const directory = await directoryRepository.create(data);
+        return directory.get();
     }
 }
 

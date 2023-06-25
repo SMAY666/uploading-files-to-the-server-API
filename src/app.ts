@@ -14,9 +14,11 @@ export const server = Fastify({
             coerceTypes: 'array',
             allErrors: false,
         },
+        plugins: [
+            [require('ajv-formats'), {}],
+        ],
     },
 });
-
 
 void server.register(multer.contentParser);
 void server.register(import('@fastify/auth'));

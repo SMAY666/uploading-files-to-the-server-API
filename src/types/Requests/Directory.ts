@@ -1,7 +1,7 @@
 import {DirectoryAttributes, DirectoryCreationAttributes} from '../models/Directory';
 
 export type CreateDirectoryRequest = {
-    Body: DirectoryCreationAttributes
+    Body: Omit<DirectoryCreationAttributes, 'userId'>
     Replay: DirectoryCreationAttributes
 }
 

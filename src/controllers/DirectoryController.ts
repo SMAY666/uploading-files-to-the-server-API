@@ -1,12 +1,13 @@
 import {RouteHandler} from 'fastify';
 import {CreateDirectoryRequest} from '../types/Requests/Directory';
 import {directoryService} from '../services';
+import {directoryRepository} from '../repositories';
 
 
 class DirectoryController {
     public create: RouteHandler<CreateDirectoryRequest> = async (req, reply) => {
 
-        const sameDirectory = await directoryService.getByName(req.body.name, req.userId);
+        const sameDirectory = await directoryRepository.getByName(req.body.name, req.userId);
 
         if (!sameDirectory) {
             const directory = await directoryService.create({

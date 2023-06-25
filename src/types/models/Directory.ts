@@ -4,6 +4,7 @@ import {Model} from 'sequelize';
 export type DirectoryAttributes = {
     id: number,
     name: string,
+    directoryId: number | null
     userId: number,
     updatedAt: Date
     createdAt: Date

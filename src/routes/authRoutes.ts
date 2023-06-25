@@ -15,7 +15,7 @@ export const authRoutes: FastifyPluginCallback = (instance, opts, done) => {
                         email: {
                             type: 'string',
                             minLength: 1,
-                        //     TODO: Вставить регулярное выражение
+                            format: 'email',
                         },
                         password: {
                             type: 'string',

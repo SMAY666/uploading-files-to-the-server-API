@@ -28,7 +28,7 @@ class WorkspaceController {
             originalName: req.file.originalname,
             name: req.file.filename ?? uuid.v4(),
             userId: req.userId,
-            directoryId: req.query.directoryId,
+            directoryId: req.body.directoryId,
         });
 
         return reply

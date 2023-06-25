@@ -3,13 +3,20 @@ import fs from 'fs';
 import path from 'path';
 
 import {FileAttributes, FileCreationAttributes, FileUpdateAttributes} from '../types/models/File';
-import {workspaceRepository} from '../repositories';
+import {directoryRepository, workspaceRepository} from '../repositories';
 import {CustomError} from '../utils/error';
 import {FILES_DIR} from '../utils/fileTools';
 
 
 class WorkspaceService {
     public async createFile(data: FileCreationAttributes): Promise<FileAttributes> {
+        if (data.directoryId) {
+            const directory = await directoryRepository.getById(data.directoryId);
+
+            if (!directory) {
+                throw CustomError('Directory not found', 404);
+            }
+        }
         const file = await workspaceRepository.createFile(data);
         return file.get();
     }
