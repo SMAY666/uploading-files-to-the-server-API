@@ -17,11 +17,11 @@ export const FileModel = sequelize.define<FileInstance>('files', {
         allowNull: false,
     },
     directoryId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: true,
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
     },
     updatedAt: {

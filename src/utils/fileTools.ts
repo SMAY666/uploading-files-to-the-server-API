@@ -20,7 +20,7 @@ function createFileStorage(dir: string): ReturnType<typeof multer.diskStorage> {
             cb(null, dir);
         },
         filename: (req, file, cb) => {
-            cb(null, uuid.v4() + path.extname(file.originalname));
+            cb(null, uuid.v4() + Date.now().toString() + path.extname(file.originalname));
         },
     });
 }

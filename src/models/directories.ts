@@ -14,11 +14,11 @@ export const DirectoryModal = sequelize.define<DirectoryInstance>('directories',
         allowNull: false,
     },
     directoryId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: true,
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: true,
     },
     updatedAt: {

@@ -30,7 +30,7 @@ void server.register(import('@fastify/jwt'), {
 server.decorate('verifyJwt', verifyJwt);
 
 export async function start(config: ServerConfig): Promise<string> {
-    await sequelize.sync({force: false, alter: true});
+    await sequelize.sync({force: true, alter: true});
     return new Promise((resolve, reject) => {
         server.listen({port: config.port}, (err, address) => {
             if (err) {
