@@ -3,6 +3,7 @@ import {cleanEnv, num, port, str} from 'envalid';
 
 
 export const env = cleanEnv(process.env, {
+    CLIENT_URL: str({default: 'http://localhost:3000'}),
     PORT: port({default: 5000}),
     DB_USERNAME: str({default: 'root'}),
     DB_PASSWORD: str({default: 'root'}),

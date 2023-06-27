@@ -8,6 +8,7 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace NodeJS {
         interface ProcessEnv {
+            CLIENT_URL: string
             PORT: number
             DB_USERNAME: string
             DB_PASSWORD: string

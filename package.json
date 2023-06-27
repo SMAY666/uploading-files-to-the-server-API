@@ -18,6 +18,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@fastify/auth": "^4.3.0",
+    "@fastify/cors": "^8.3.0",
     "@fastify/jwt": "^7.0.0",
     "@fastify/multipart": "^7.7.0",
     "@fastify/postgres": "^5.2.0",
