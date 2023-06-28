@@ -15,13 +15,13 @@ import * as uuid from 'uuid';
 
 
 class WorkspaceController {
-    // ----[FILE]------
-
     public createFile: RouteHandler<CreateFileRequest> = async (req, reply) => {
         if (!req.file) {
             return reply
                 .code(400)
-                .send();
+                .send({
+                    message: 'File must be uploaded',
+                });
         }
 
         const file = await workspaceService.createFile({
@@ -35,6 +35,8 @@ class WorkspaceController {
             .code(201)
             .send(file);
     };
+
+    // ----[FILE]------
 
     public deleteFile: RouteHandler<DeleteFileRequest> = async (req, reply) => {
         const file = await workspaceService.deleteFile(req.params.fileId);

@@ -17,7 +17,18 @@ export const workspaceRoutes: FastifyPluginCallback = (instance, opts, done) => 
     instance.post<CreateFileRequest>(
         '/files',
         {
-            preHandler: [filesUpload.single('file')],
+            preValidation: [filesUpload.single('file')],
+            schema: {
+                body: {
+                    type: 'object',
+                    required: ['directoryId'],
+                    properties: {
+                        directoryId: {
+                            type: 'integer',
+                        },
+                    },
+                },
+            },
         },
         workspaceController.createFile,
     );
