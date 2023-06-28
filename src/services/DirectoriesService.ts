@@ -14,6 +14,14 @@ class DirectoriesService {
         const directory = await directoryRepository.create(data);
         return directory.get();
     }
+
+    public async getById(id: number): Promise<DirectoryAttributes> {
+        const directory = await directoryRepository.getById(id);
+        if (!directory) {
+            throw CustomError('Directory not found', 404);
+        }
+        return directory.get();
+    }
 }
 
 export const directoryService = new DirectoriesService();

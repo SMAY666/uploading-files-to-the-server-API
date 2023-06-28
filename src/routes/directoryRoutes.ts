@@ -1,7 +1,7 @@
 import {FastifyPluginCallback} from 'fastify';
 
 import {directoryController} from '../controllers';
-import {CreateDirectoryRequest} from '../types/Requests/Directory';
+import {CreateDirectoryRequest, GetDirectoryById} from '../types/Requests/Directory';
 
 export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => {
     instance.addHook('onRequest', instance.auth([instance.verifyJwt]));
@@ -24,6 +24,11 @@ export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => 
             },
         },
         directoryController.create,
+    );
+    instance.get<GetDirectoryById>(
+        '/:directoryId',
+        {},
+        directoryController.getById,
     );
     done();
 };

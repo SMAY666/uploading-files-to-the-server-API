@@ -7,7 +7,7 @@ class UsersRepository {
     }
 
     public async getById(userId: number): Promise<UserInstance | null> {
-        return await UserModel.findByPk(userId);
+        return await UserModel.findByPk(userId, {include: ['userDirectories', 'files']});
     }
 
     public async getByEmail(email: string): Promise<UserInstance | null> {
