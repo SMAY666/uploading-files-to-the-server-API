@@ -30,7 +30,9 @@ class AuthService {
 
         return server.jwt.sign({
             userId: candidate.id,
-            expireIn: Date.now() + env.JWT_EXPIRES_IN,
+            expiresIn: Date.now() + env.JWT_EXPIRES_IN,
+        }, {
+            expiresIn: '1h',
         });
     }
 }

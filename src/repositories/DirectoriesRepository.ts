@@ -7,7 +7,7 @@ class DirectoriesRepository {
     }
 
     public async getById(directoryId: number): Promise<DirectoryInstance | null> {
-        return await DirectoryModal.findByPk(directoryId, {include: ['selfDirectories', 'files']});
+        return await DirectoryModal.findByPk(directoryId, {include: ['childDirectories', 'files']});
     }
 
     public async getByName(
