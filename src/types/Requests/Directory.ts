@@ -1,4 +1,9 @@
-import {DirectoryAttributes, DirectoryCreationAttributes} from '../models/Directory';
+import {
+    DirectoryAttributes,
+    DirectoryCreationAttributes,
+    DirectoryEditAttributes,
+} from '../models/Directory';
+
 
 export type CreateDirectoryRequest = {
     Body: Omit<DirectoryCreationAttributes, 'userId'>
@@ -17,4 +22,12 @@ export type GetDirectoryByName = {
         name: string
     }
     Replay: DirectoryAttributes
+}
+
+export type EditDirectory = {
+    Params: {
+        directoryId: number
+    }
+    Body: DirectoryEditAttributes
+    Reply: DirectoryAttributes
 }

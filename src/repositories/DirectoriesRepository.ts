@@ -1,4 +1,4 @@
-import {DirectoryCreationAttributes, DirectoryInstance} from '../types/models/Directory';
+import {DirectoryCreationAttributes, DirectoryEditAttributes, DirectoryInstance} from '../types/models/Directory';
 import {DirectoryModal} from '../models';
 
 class DirectoriesRepository {
@@ -21,6 +21,24 @@ class DirectoriesRepository {
                 directoryId: directoryId ?? null,
                 userId: userId,
             },
+        });
+    }
+
+    public async edit(id: number, data: DirectoryEditAttributes): Promise<DirectoryInstance | null> {
+        const directory = await directoryRepository.getById(id);
+
+        if (directory) {
+            await directory.update(data);
+        }
+        return directory;
+    }
+
+    public async findChildren(parentId: number): Promise<DirectoryInstance[]> {
+        return await DirectoryModal.findAll({
+            where: {
+                directoryId: parentId,
+            },
+            attributes: ['id'],
         });
     }
 }

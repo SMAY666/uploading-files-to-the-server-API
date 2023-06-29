@@ -32,7 +32,7 @@ class AuthService {
             userId: candidate.id,
             expiresIn: Date.now() + env.JWT_EXPIRES_IN,
         }, {
-            expiresIn: '1h',
+            expiresIn: env.TOKEN_LIFE_TIME,
         });
     }
 }

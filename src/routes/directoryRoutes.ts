@@ -1,7 +1,7 @@
 import {FastifyPluginCallback} from 'fastify';
 
 import {directoryController} from '../controllers';
-import {CreateDirectoryRequest, GetDirectoryById} from '../types/Requests/Directory';
+import {CreateDirectoryRequest, EditDirectory, GetDirectoryById} from '../types/Requests/Directory';
 
 export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => {
     instance.addHook('onRequest', instance.auth([instance.verifyJwt]));
@@ -17,7 +17,7 @@ export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => 
                             minLength: 1,
                         },
                         directoryId: {
-                            type: 'integer',
+                            type: ['integer', 'null'],
                         },
                     },
                 },
@@ -29,6 +29,27 @@ export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => 
         '/:directoryId',
         {},
         directoryController.getById,
+    );
+
+    instance.patch<EditDirectory>(
+        '/:directoryId',
+        {
+            schema: {
+                body: {
+                    type: 'object',
+                    properties: {
+                        name: {
+                            type: 'string',
+                            minLength: 1,
+                        },
+                        directoryId: {
+                            type: ['integer', 'null'],
+                        },
+                    },
+                },
+            },
+        },
+        directoryController.edit,
     );
     done();
 };

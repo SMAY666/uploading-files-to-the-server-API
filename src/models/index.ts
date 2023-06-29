@@ -7,7 +7,7 @@ DirectoryModal.hasMany(FileModel, {foreignKey: {name: 'directoryId', allowNull: 
 FileModel.belongsTo(DirectoryModal, {foreignKey: 'directoryId', as: 'directory'});
 
 DirectoryModal.hasMany(DirectoryModal, {foreignKey: {name: 'directoryId', allowNull: true}, as: 'childDirectories'});
-DirectoryModal.belongsTo(DirectoryModal, {foreignKey: 'directoryId', as: 'directory'});
+DirectoryModal.belongsTo(DirectoryModal, {foreignKey: {name: 'directoryId', allowNull: true}, as: 'directory'});
 
 UserModel.hasMany(FileModel, {foreignKey: 'userId', as: 'files'});
 

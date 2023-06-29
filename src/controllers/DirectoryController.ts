@@ -1,5 +1,5 @@
 import {RouteHandler} from 'fastify';
-import {CreateDirectoryRequest, GetDirectoryById} from '../types/Requests/Directory';
+import {CreateDirectoryRequest, EditDirectory, GetDirectoryById} from '../types/Requests/Directory';
 import {directoryService} from '../services';
 
 
@@ -17,6 +17,13 @@ class DirectoryController {
 
     public getById: RouteHandler<GetDirectoryById> = async (req, reply) => {
         const directory = await directoryService.getById(req.params.directoryId);
+        return reply
+            .code(200)
+            .send(directory);
+    };
+
+    public edit: RouteHandler<EditDirectory> = async (req, reply) => {
+        const directory = await directoryService.edit(req.params.directoryId, req.body);
         return reply
             .code(200)
             .send(directory);

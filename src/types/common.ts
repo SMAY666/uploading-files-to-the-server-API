@@ -17,6 +17,7 @@ declare global {
             DB_NAME: string
             JWT_SECRET: string
             JWT_EXPIRES_IN: number
+            TOKEN_LIFE_TIME: string
             PASSWORD_SALT: string
         }
     }

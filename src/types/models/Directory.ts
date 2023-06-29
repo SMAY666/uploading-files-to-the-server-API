@@ -14,6 +14,8 @@ export type DirectoryCreationAttributes = OptionalNull<
     DirectoryAttributes,
     'id' | 'createdAt' | 'updatedAt'>;
 
+export type DirectoryEditAttributes = Partial<Pick<DirectoryAttributes, 'name' | 'directoryId'>>
+
 export interface DirectoryInstance extends Model<
     DirectoryAttributes,
     DirectoryCreationAttributes

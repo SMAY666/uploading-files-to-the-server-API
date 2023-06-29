@@ -12,6 +12,7 @@ export const env = cleanEnv(process.env, {
     DB_NAME: str({default: 'filestorage'}),
     JWT_SECRET: str({default: 'dev'}),
     JWT_EXPIRES_IN: num({default: 3600000}),
+    TOKEN_LIFE_TIME: str({default: '1d'}),
     PASSWORD_SALT: str({default: '1234556'}),
 });
 
@@ -24,6 +25,13 @@ export const sequelize = new Sequelize(
         define: {
             charset: 'utf8',
             collate: 'utf8_general_ci',
+        },
+        pool: {
+            max: 5,
+            min: 0,
+            idle: 20000,
+            acquire: 40000,
+            evict: 20000,
         },
         host: env.DB_HOST,
         dialect: 'mysql',

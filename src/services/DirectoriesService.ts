@@ -1,4 +1,4 @@
-import {DirectoryAttributes, DirectoryCreationAttributes} from '../types/models/Directory';
+import {DirectoryAttributes, DirectoryCreationAttributes, DirectoryEditAttributes} from '../types/models/Directory';
 import {directoryRepository} from '../repositories';
 import {CustomError} from '../utils/error';
 
@@ -21,6 +21,30 @@ class DirectoriesService {
             throw CustomError('Directory not found', 404);
         }
         return directory.get();
+    }
+
+    public async edit(id: number, data: DirectoryEditAttributes): Promise<DirectoryAttributes | undefined> {
+        if (data.directoryId && await this.isMoveToChild(id, data.directoryId)) {
+            throw CustomError('Cannot be moved to a child directory', 409);
+        }
+
+        const directory = await directoryRepository.edit(id, data);
+
+        if (!directory) {
+            throw CustomError('Directory not found', 404);
+        }
+
+        return directory.get();
+    }
+
+    private async isMoveToChild(parentId: number, directoryId: number): Promise<boolean> {
+        const children = await directoryRepository.findChildren(parentId);
+        for (const child of children) {
+            if (directoryId === child.id) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
