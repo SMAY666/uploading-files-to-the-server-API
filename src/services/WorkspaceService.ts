@@ -22,6 +22,10 @@ class WorkspaceService {
     }
 
     public async updateFile(fileId: number, data: FileUpdateAttributes): Promise<FileAttributes> {
+        if (data.directoryId && !await directoryRepository.getById(data.directoryId)) {
+            throw CustomError('Directory not found', 404);
+        }
+
         const file = await workspaceRepository.updateFile(fileId, data);
         if (!file) {
             throw CustomError('file not found', 404);

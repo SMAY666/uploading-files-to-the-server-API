@@ -25,6 +25,7 @@ export const workspaceRoutes: FastifyPluginCallback = (instance, opts, done) => 
                     properties: {
                         directoryId: {
                             type: 'integer',
+                            minLength: 1,
                         },
                     },
                 },
@@ -41,7 +42,23 @@ export const workspaceRoutes: FastifyPluginCallback = (instance, opts, done) => 
 
     instance.patch<UpdateFileRequest>(
         '/:fileId',
-        {},
+        {
+            schema: {
+                body: {
+                    type: 'object',
+                    properties: {
+                        originalName: {
+                            type: 'string',
+                            minLength: 1,
+                        },
+                        directoryId: {
+                            type: 'integer',
+                            minLength: 1,
+                        },
+                    },
+                },
+            },
+        },
         workspaceController.updateFile,
     );
 

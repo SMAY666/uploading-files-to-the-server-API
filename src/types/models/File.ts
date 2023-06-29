@@ -12,6 +12,6 @@ export type FileAttributes = {
 }
 
 export type FileCreationAttributes = OptionalNull<FileAttributes, 'id' | 'createdAt' | 'updatedAt'>
-export type FileUpdateAttributes = Partial<FileCreationAttributes>
+export type FileUpdateAttributes = Partial<Pick<FileAttributes, 'originalName' | 'directoryId'>>
 
 export interface FileInstance extends Model<FileAttributes, FileCreationAttributes>, FileAttributes {}
