@@ -1,7 +1,7 @@
 import {FastifyPluginCallback} from 'fastify';
 
 import {directoryController} from '../controllers';
-import {CreateDirectoryRequest, EditDirectory, GetDirectoryById} from '../types/Requests/Directory';
+import {CreateDirectoryRequest, EditDirectory, GetDirectoryById, DeleteDirectory} from '../types/Requests/Directory';
 
 export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => {
     instance.addHook('onRequest', instance.auth([instance.verifyJwt]));
@@ -51,5 +51,11 @@ export const directoryRoutes: FastifyPluginCallback = (instance, opts, done) => 
         },
         directoryController.edit,
     );
+
+    instance.delete<DeleteDirectory>(
+        '/:directoryId',
+        {},
+        directoryController.delete,
+    )
     done();
 };

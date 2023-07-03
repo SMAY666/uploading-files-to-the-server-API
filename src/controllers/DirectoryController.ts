@@ -1,5 +1,5 @@
 import {RouteHandler} from 'fastify';
-import {CreateDirectoryRequest, EditDirectory, GetDirectoryById} from '../types/Requests/Directory';
+import {CreateDirectoryRequest, DeleteDirectory, EditDirectory, GetDirectoryById} from '../types/Requests/Directory';
 import {directoryService} from '../services';
 
 
@@ -28,6 +28,13 @@ class DirectoryController {
             .code(200)
             .send(directory);
     };
+
+    public delete: RouteHandler<DeleteDirectory> = async (req, reply) => {
+        const directory = await directoryService.delete(req.params.directoryId);
+        return reply
+            .code(200)
+            .send(directory);
+    }
 }
 
 export const directoryController = new DirectoryController();

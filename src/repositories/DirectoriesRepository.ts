@@ -33,6 +33,14 @@ class DirectoriesRepository {
         return directory;
     }
 
+    public async delete(id: number): Promise<DirectoryInstance | null> {
+        const directory = await DirectoryModal.findByPk(id);
+        if (directory) {
+            await directory.destroy();
+        }
+        return directory;
+    }
+
     public async findChildren(parentId: number): Promise<DirectoryInstance[]> {
         return await DirectoryModal.findAll({
             where: {

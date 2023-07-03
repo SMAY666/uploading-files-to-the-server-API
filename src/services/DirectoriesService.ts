@@ -37,6 +37,15 @@ class DirectoriesService {
         return directory.get();
     }
 
+    public async delete(id: number): Promise<DirectoryAttributes> {
+        const deletedDirectory = await directoryRepository.delete(id);
+        if (!deletedDirectory) {
+            throw CustomError('Directory not found', 404);
+        }
+
+        return deletedDirectory.get();
+    }
+
     private async isMoveToChild(parentId: number, directoryId: number): Promise<boolean> {
         const children = await directoryRepository.findChildren(parentId);
         for (const child of children) {

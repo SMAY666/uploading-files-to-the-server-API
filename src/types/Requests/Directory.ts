@@ -31,3 +31,10 @@ export type EditDirectory = {
     Body: DirectoryEditAttributes
     Reply: DirectoryAttributes
 }
+
+export type DeleteDirectory = {
+    Params: {
+        directoryId: number
+    }
+    Replay: DirectoryAttributes
+}
