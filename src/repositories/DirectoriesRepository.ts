@@ -10,6 +10,16 @@ class DirectoriesRepository {
         return await DirectoryModal.findByPk(directoryId, {include: ['childDirectories', 'files']});
     }
 
+    public async getAll(userId: number, limit: number, offset: number) : Promise<DirectoryInstance[]> {
+        return DirectoryModal.findAll({
+            limit,
+            offset,
+            where: {
+                userId: userId,
+            },
+        });
+    }
+
     public async getByName(
         name: string,
         directoryId: number | undefined | null,

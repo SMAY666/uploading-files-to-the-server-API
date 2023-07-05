@@ -22,6 +22,11 @@ class DirectoriesService {
         }
         return directory.get();
     }
+    
+    public async getAll(userId: number, limit: number, offset: number): Promise<DirectoryAttributes[]> {
+        const directories = await directoryRepository.getAll(userId, limit, offset);
+        return directories.map((directory) => directory.get());
+    }
 
     public async edit(id: number, data: DirectoryEditAttributes): Promise<DirectoryAttributes | undefined> {
         if (data.directoryId && await this.isMoveToChild(id, data.directoryId)) {

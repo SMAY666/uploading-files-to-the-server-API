@@ -17,13 +17,13 @@ export type GetDirectoryById = {
     Replay: DirectoryAttributes
 }
 
-export type GetDirectoryByName = {
+export type GetAllDirectories = {
     Querystring: {
-        name: string
+        limit: number,
+        offset: number
     }
-    Replay: DirectoryAttributes
+    Reply: DirectoryAttributes[]
 }
-
 export type EditDirectory = {
     Params: {
         directoryId: number

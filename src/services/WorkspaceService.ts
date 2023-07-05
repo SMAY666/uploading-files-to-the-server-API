@@ -49,8 +49,8 @@ class WorkspaceService {
         return file.get();
     }
 
-    public async getAllFiles(limit: number, offset: number): Promise<FileAttributes[]> {
-        const files = await workspaceRepository.getAllFiles(limit, offset);
+    public async getAllFiles(userId: number, limit: number, offset: number): Promise<FileAttributes[]> {
+        const files = await workspaceRepository.getAllFiles(userId, limit, offset);
         return files.map((file) => file.get());
     }
 

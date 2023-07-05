@@ -60,7 +60,7 @@ class WorkspaceController {
     };
 
     public getAllFiles: RouteHandler<GetAllFilesRequest> = async (req, reply) => {
-        const files = await workspaceService.getAllFiles(req.query.limit, req.query.offset);
+        const files = await workspaceService.getAllFiles(req.userId, req.query.limit, req.query.offset);
         return reply
             .code(200)
             .send(files);
