@@ -6,42 +6,47 @@ import {UserModel} from './users';
 DirectoryModal.hasMany(FileModel, {
     foreignKey: {
         name: 'directoryId',
-        allowNull: true
+        allowNull: true,
     },
     as: 'files',
-    onDelete: 'cascade'
+    onDelete: 'cascade',
 });
 FileModel.belongsTo(DirectoryModal, {
     foreignKey: 'directoryId',
-    as: 'directory'
+    as: 'directory',
 });
 
 DirectoryModal.hasMany(DirectoryModal, {
     foreignKey: {
         name: 'directoryId',
-        allowNull: true
+        allowNull: true,
     },
     as: 'childDirectories',
-    onDelete: 'cascade'
+    onDelete: 'cascade',
 });
 DirectoryModal.belongsTo(DirectoryModal, {
     foreignKey: {
         name: 'directoryId',
-        allowNull: true
+        allowNull: true,
     },
-    as: 'directory'
+    as: 'directory',
 });
 
 UserModel.hasMany(FileModel, {
     foreignKey: 'userId',
     as: 'files',
-    onDelete: 'cascade'
+    onDelete: 'cascade',
 });
 
 UserModel.hasMany(DirectoryModal, {
     foreignKey: 'userId',
     as: 'userDirectories',
-    onDelete: 'cascade'
+    onDelete: 'cascade',
+});
+
+UserModel.belongsToMany(UserModel, {
+    through: 'friends',
+    as: 'userFriends',
 });
 
 
